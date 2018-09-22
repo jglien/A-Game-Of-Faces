@@ -35,14 +35,14 @@ namespace AGameOfFaces.Controllers
         /// Gets the profiles to guess from.
         /// </summary>
         /// <returns></returns>
-        [Route("begin")]
+        [Route("")]
         [HttpGet]
-        public IHttpActionResult Begin(string mode = "")
+        public IHttpActionResult Get(string mode = "")
         {
             var requestedMode = Enum.TryParse<Mode>(mode, true, out var modeType);
             var data = _gameService.GetGameData(modeType);
 
-            return Ok(new Begin {
+            return Ok(new Game {
                 Faces = data.Faces,
                 Mode = requestedMode ? mode : nameof(Mode.Normal),
                 Names = data.Names

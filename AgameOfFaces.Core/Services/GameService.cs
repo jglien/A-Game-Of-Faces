@@ -30,7 +30,9 @@ namespace AgameOfFaces.Core.Services
 
         public bool CheckAnswer(string name, string face)
         {
-            return false;
+            var profiles = GetProfiles();
+
+            return profiles.Any(p => name.Equals($"{p.FirstName} {p.LastName}") && face.Equals(p.Headshot.Url));
         }
 
         public GameData GetGameData(Mode mode)

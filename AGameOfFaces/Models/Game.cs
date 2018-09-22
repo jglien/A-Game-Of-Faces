@@ -6,9 +6,9 @@ using System.Web;
 namespace AGameOfFaces.Models
 {
     /// <summary>
-    /// Model for "beggining" a game.
+    /// Game model.
     /// </summary>
-    public class Begin
+    public class Game
     {
         /// <summary>
         /// The urls for images of faces.
