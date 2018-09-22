@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AgameOfFaces.Core.Enums;
+using AgameOfFaces.Core.Services;
+using AgameOfFaces.Core.Services.Interfaces;
 using AGameOfFaces.Models;
 
 namespace AGameOfFaces.Controllers
@@ -14,6 +17,20 @@ namespace AGameOfFaces.Controllers
     [RoutePrefix("api/game")]
     public class GameController : ApiController
     {
+        #region Private Fields
+
+        private IGameService _gameService;
+
+        #endregion
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public GameController()
+        {
+            _gameService = new GameService();
+        }
+
         /// <summary>
         /// Gets the profiles to guess from.
         /// </summary>
@@ -22,9 +39,14 @@ namespace AGameOfFaces.Controllers
         [HttpGet]
         public IHttpActionResult Begin(string mode = "")
         {
+            var requestedMode = Enum.TryParse<Mode>(mode, true, out var modeType);
+            var data = _gameService.GetGameData(modeType);
 
-
-            return Ok();
+            return Ok(new Begin {
+                Faces = data.Faces,
+                Mode = requestedMode ? mode : nameof(Mode.Normal),
+                Names = data.Names
+            });
         }
 
         /// <summary>
@@ -35,9 +57,7 @@ namespace AGameOfFaces.Controllers
         [HttpGet]
         public IHttpActionResult Modes()
         {
-
-
-            return Ok();
+            return Ok(_gameService.Modes);
         }
 
         /// <summary>
@@ -48,9 +68,9 @@ namespace AGameOfFaces.Controllers
         [HttpPost]
         public IHttpActionResult Guess(Guess guess)
         {
+            var isCorrect = _gameService.CheckAnswer(guess.Name, guess.Face);
 
-
-            return Ok();
+            return Ok(isCorrect);
         }
     }
 }
