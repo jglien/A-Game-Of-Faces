@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AGameOfFaces.Models
+namespace AGameOfFaces.Core.DTO
 {
     /// <summary>
-    /// Headshot model.
+    /// Headshot DTO.
     /// </summary>
     public class Headshot
     {

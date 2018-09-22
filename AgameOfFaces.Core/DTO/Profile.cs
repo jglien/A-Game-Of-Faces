@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AGameOfFaces.Models
+namespace AGameOfFaces.Core.DTO
 {
     /// <summary>
-    /// Profile model.
+    /// Profile DTO.
     /// </summary>
-    public class Profile
+    public class ProfileDTO
     {
         /// <summary>
         /// First name.
