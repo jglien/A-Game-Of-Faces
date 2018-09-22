@@ -8,7 +8,7 @@ namespace AGameOfFaces.Core.DTO
     /// <summary>
     /// Profile DTO.
     /// </summary>
-    public class ProfileDTO
+    public class Profile
     {
         /// <summary>
         /// First name.
