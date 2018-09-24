@@ -1,9 +1,9 @@
 ﻿using System.Web.Http;
-using AgameOfFaces.Core.Repositories;
-using AgameOfFaces.Core.Repositories.Interfaces;
-using AgameOfFaces.Core.Services;
-using AgameOfFaces.Core.Services.Interfaces;
 using AGameOfFaces.Core.DTO;
+using AGameOfFaces.Core.Repositories;
+using AGameOfFaces.Core.Repositories.Interfaces;
+using AGameOfFaces.Core.Services;
+using AGameOfFaces.Core.Services.Interfaces;
 
 namespace AGameOfFaces.Controllers
 {

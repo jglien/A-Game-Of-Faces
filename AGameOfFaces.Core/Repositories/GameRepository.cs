@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading;
 using AGameOfFaces.Core.DTO;
-using AgameOfFaces.Core.Helpers;
-using AgameOfFaces.Core.Repositories.Interfaces;
+using AGameOfFaces.Core.Helpers;
+using AGameOfFaces.Core.Repositories.Interfaces;
 
-namespace AgameOfFaces.Core.Repositories
+namespace AGameOfFaces.Core.Repositories
 {
     /// <summary>
     /// Game repository.

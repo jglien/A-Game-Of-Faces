@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AGameOfFaces.Core.DTO;
 
-namespace AgameOfFaces.Core.Services.Interfaces
+namespace AGameOfFaces.Core.Services.Interfaces
 {
     /// <summary>
     /// The game service interface.

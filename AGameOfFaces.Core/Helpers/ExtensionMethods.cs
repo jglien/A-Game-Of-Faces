@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AGameOfFaces.Core.DTO;
-using AgameOfFaces.Core.Repositories;
+using AGameOfFaces.Core.Repositories;
 
-namespace AgameOfFaces.Core.Helpers
+namespace AGameOfFaces.Core.Helpers
 {
     /// <summary>
     /// Extension methods.

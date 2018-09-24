@@ -7,8 +7,8 @@
     <ProjectGuid>{D0B5C1B8-3723-4EE8-B3B7-BE172331838D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgameOfFaces.Core</RootNamespace>
-    <AssemblyName>AgameOfFaces.Core</AssemblyName>
+    <RootNamespace>AGameOfFaces.Core</RootNamespace>
+    <AssemblyName>AGameOfFaces.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

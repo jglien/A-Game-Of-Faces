@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgameOfFaces.Core.Repositories
+namespace AGameOfFaces.Core.Repositories
 {
     using System;
     using System.Collections.Generic;

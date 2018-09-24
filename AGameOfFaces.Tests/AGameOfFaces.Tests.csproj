@@ -108,9 +108,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AgameOfFaces.Core\AgameOfFaces.Core.csproj">
+    <ProjectReference Include="..\AGameOfFaces.Core\AGameOfFaces.Core.csproj">
       <Project>{d0b5c1b8-3723-4ee8-b3b7-be172331838d}</Project>
-      <Name>AgameOfFaces.Core</Name>
+      <Name>AGameOfFaces.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\AGameOfFaces\AGameOfFaces.csproj">
       <Project>{E0A46FC7-CE1E-419E-AEA3-739EBA485E80}</Project>

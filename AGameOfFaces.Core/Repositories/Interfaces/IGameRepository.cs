@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AGameOfFaces.Core.DTO;
 
-namespace AgameOfFaces.Core.Repositories.Interfaces
+namespace AGameOfFaces.Core.Repositories.Interfaces
 {
     /// <summary>
     /// Game repository interface.

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using AGameOfFaces.Core.DTO;
-using AgameOfFaces.Core.Enums;
-using AgameOfFaces.Core.Repositories.Interfaces;
-using AgameOfFaces.Core.Services.Interfaces;
+using AGameOfFaces.Core.Enums;
+using AGameOfFaces.Core.Repositories.Interfaces;
+using AGameOfFaces.Core.Services.Interfaces;
 
-namespace AgameOfFaces.Core.Services
+namespace AGameOfFaces.Core.Services
 {
     /// <summary>
     /// Implementation of IGameService.
