@@ -39,6 +39,8 @@ namespace AgameOfFaces.Core.Services
         {
             switch(mode)
             {
+                case Mode.Reverse:
+                    return GetReverseGameData();
                 case Mode.Normal:
                 default:
                     return GetNormalGameData();
@@ -51,7 +53,8 @@ namespace AgameOfFaces.Core.Services
 
         public IEnumerable<string> Modes { get; } = new ReadOnlyCollection<string>(new List<string>
         {
-            nameof(Mode.Normal)
+            nameof(Mode.Normal),
+            nameof(Mode.Reverse)
         });
 
         #endregion
@@ -62,24 +65,45 @@ namespace AgameOfFaces.Core.Services
         {
             const int numFaces = 6;
             var random = new Random();
+            var profiles = GetRandomProfiles(numFaces, random);
+
+            var profileForName = profiles.ElementAt(random.Next(profiles.Count));
+            return new GameData
+            {
+                Faces = profiles.Select(p => p.Headshot.Url),
+                Names = new List<string> { $"{profileForName.FirstName} {profileForName.LastName}" }
+            };
+        }
+
+        private GameData GetReverseGameData()
+        {
+            const int numNames = 6;
+            var random = new Random();
+            var profiles = GetRandomProfiles(numNames, random);
+
+            var profileForFace = profiles.ElementAt(random.Next(profiles.Count));
+            return new GameData
+            {
+                Faces = new List<string> { profileForFace.Headshot.Url  },
+                Names = profiles.Select(p => $"{p.FirstName} {p.LastName}")
+            };
+        }
+
+        private IList<Profile> GetRandomProfiles(int numProfiles, Random random)
+        {
             var profiles = GetProfiles().ToList();
 
             var selectedProfiles = new List<Profile>();
-            for(var i = 0; i < numFaces; i++)
+            for (var i = 0; i < numProfiles; i++)
             {
                 var profile = profiles.ElementAt(random.Next(profiles.Count));
                 selectedProfiles.Add(profile);
-                
+
                 // Remove so we don't add twice.
                 profiles.Remove(profile);
             }
 
-            var profileForName = selectedProfiles.ElementAt(random.Next(selectedProfiles.Count));
-            return new GameData
-            {
-                Faces = selectedProfiles.Select(p => p.Headshot.Url),
-                Names = new List<string> { $"{profileForName.FirstName} {profileForName.LastName}" }
-            };
+            return selectedProfiles;
         }
 
         private IEnumerable<Profile> GetProfiles()

@@ -11,6 +11,8 @@ namespace AgameOfFaces.Core.Enums
     /// </summary>
     public enum Mode
     {
-        Normal
+        Normal,
+
+        Reverse
     }
 }
