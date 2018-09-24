@@ -84,18 +84,16 @@ namespace AgameOfFaces.Core.Services
 
         private IEnumerable<Profile> GetProfiles()
         {
-            var profiles = Enumerable.Empty<Profile>();
-
             using (var client = new HttpClient())
             {
                 var response = client.GetAsync(@"https://www.willowtreeapps.com/api/v1.0/profiles").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    profiles = response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
+                    return response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
                 }
             }
 
-            return profiles;
+            return Enumerable.Empty<Profile>();
         }
 
         #endregion
