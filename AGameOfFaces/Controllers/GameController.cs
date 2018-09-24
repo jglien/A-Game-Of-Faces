@@ -19,7 +19,7 @@ namespace AGameOfFaces.Controllers
     {
         #region Private Fields
 
-        private IGameService _gameService;
+        private readonly IGameService _gameService;
 
         #endregion
 
