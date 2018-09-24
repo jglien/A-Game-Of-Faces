@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using AgameOfFaces.Core.DTO;
 using AgameOfFaces.Core.Enums;
+using AgameOfFaces.Core.Repositories.Interfaces;
 using AgameOfFaces.Core.Services.Interfaces;
 using AGameOfFaces.Core.DTO;
 
@@ -19,12 +17,19 @@ namespace AgameOfFaces.Core.Services
     /// </summary>
     public class GameService : IGameService
     {
+        #region Private Fields
+
+        private readonly IGameRepository _gameRepository;
+
+        #endregion
+
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameService()
+        /// <param name="gameRepository"></param>
+        public GameService(IGameRepository gameRepository)
         {
-
+            _gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
         }
 
         #region Public Methods
@@ -33,7 +38,10 @@ namespace AgameOfFaces.Core.Services
         {
             var profiles = GetProfiles();
 
-            return profiles.Any(p => name.Equals($"{p.FirstName} {p.LastName}") && face.Equals(p.Headshot.Url));
+            var correct = profiles.Any(p => name.Equals($"{p.FirstName} {p.LastName}") && face.Equals(p.Headshot.Url));
+            _gameRepository.UpdateUserGuess(correct);
+
+            return correct;
         }
 
         public GameData GetGameData(Mode mode)
