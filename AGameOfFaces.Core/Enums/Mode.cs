@@ -15,6 +15,8 @@ namespace AGameOfFaces.Core.Enums
 
         Reverse,
 
-        Matt
+        Matt,
+
+        Engineer
     }
 }

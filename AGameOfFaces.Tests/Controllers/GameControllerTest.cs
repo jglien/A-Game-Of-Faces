@@ -61,6 +61,7 @@ namespace AGameOfFaces.Tests.Controllers
             var normalData = _gameController.Get() as OkNegotiatedContentResult<Game>;
             var reverseData = _gameController.Get(nameof(Mode.Reverse)) as OkNegotiatedContentResult<Game>;
             var mattData = _gameController.Get(nameof(Mode.Matt)) as OkNegotiatedContentResult<Game>;
+            var engineerData = _gameController.Get(nameof(Mode.Engineer)) as OkNegotiatedContentResult<Game>;
 
             // Assert
             // Normal
@@ -74,14 +75,19 @@ namespace AGameOfFaces.Tests.Controllers
             Assert.AreEqual(nameof(Mode.Reverse), reverseData.Content.Mode);
             Assert.AreEqual(1, reverseData.Content.Faces.Count());
             Assert.AreEqual(numFacesOrNames, reverseData.Content.Names.Count());
-
-
+            
             // Matt
             Assert.IsNotNull(mattData);
             Assert.AreEqual(nameof(Mode.Matt), mattData.Content.Mode);
             Assert.AreEqual(numFacesOrNames, mattData.Content.Faces.Count());
             Assert.AreEqual(1, mattData.Content.Names.Count());
             Assert.IsTrue(mattData.Content.Names.FirstOrDefault().StartsWith("Mat"));
+
+            // Engineer
+            Assert.IsNotNull(engineerData);
+            Assert.AreEqual(nameof(Mode.Engineer), engineerData.Content.Mode);
+            Assert.AreEqual(numFacesOrNames, engineerData.Content.Faces.Count());
+            Assert.AreEqual(1, engineerData.Content.Names.Count());
         }
 
         [TestMethod]

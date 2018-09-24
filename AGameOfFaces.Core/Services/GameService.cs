@@ -49,8 +49,10 @@ namespace AGameOfFaces.Core.Services
 
             switch(mode)
             {
+                case Mode.Engineer:
+                    return GetGameDataFilter(nameof(Mode.Engineer), ps => ps.Where(p => !string.IsNullOrEmpty(p.JobTitle) && p.JobTitle.Contains("Engineer")));
                 case Mode.Matt:
-                    return GetGameDataFilter(ps => ps.Where(p => Regex.Match(p.FirstName, @"Mat+(hew)??").Success));
+                    return GetGameDataFilter(nameof(Mode.Matt), ps => ps.Where(p => Regex.Match(p.FirstName, @"Mat+(hew)??").Success));
                 case Mode.Reverse:
                     return GetReverseGameData();
                 case Mode.Normal:
@@ -75,7 +77,8 @@ namespace AGameOfFaces.Core.Services
         {
             nameof(Mode.Normal),
             nameof(Mode.Reverse),
-            nameof(Mode.Matt)
+            nameof(Mode.Matt),
+            nameof(Mode.Engineer)
         });
 
         #endregion
@@ -112,7 +115,7 @@ namespace AGameOfFaces.Core.Services
             };
         }
 
-        private Game GetGameDataFilter(Func<IEnumerable<Profile>, IEnumerable<Profile>> filter)
+        private Game GetGameDataFilter(string mode, Func<IEnumerable<Profile>, IEnumerable<Profile>> filter)
         {
             const int numFaces = 6;
             var random = new Random();
@@ -122,7 +125,7 @@ namespace AGameOfFaces.Core.Services
             return new Game
             {
                 Faces = profiles.Select(p => p.Headshot.Url),
-                Mode = nameof(Mode.Matt),
+                Mode = mode,
                 Names = new List<string> { $"{profileForName.FirstName} {profileForName.LastName}" }
             };
         }
