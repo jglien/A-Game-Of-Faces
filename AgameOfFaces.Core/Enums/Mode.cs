@@ -13,6 +13,8 @@ namespace AgameOfFaces.Core.Enums
     {
         Normal,
 
-        Reverse
+        Reverse,
+
+        Matt
     }
 }
