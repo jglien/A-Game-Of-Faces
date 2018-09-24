@@ -11,9 +11,9 @@ namespace AgameOfFaces.Core.Services.Interfaces
         /// <summary>
         /// Get the data to play a game.
         /// </summary>
-        /// <param name="mode">The game mode.</param>
+        /// <param name="requestedMode">The game mode.</param>
         /// <returns></returns>
-        Game GetGameData(string mode);
+        Game GetGameData(string requestedMode);
 
         /// <summary>
         /// Checks if the answer is correct by comparing the name to the face.
@@ -22,6 +22,13 @@ namespace AgameOfFaces.Core.Services.Interfaces
         /// <param name="face"></param>
         /// <returns></returns>
         bool CheckAnswer(Guess guess);
+
+        /// <summary>
+        /// Gets the leaderboard.
+        /// </summary>
+        /// <param name="numUsers"></param>
+        /// <returns></returns>
+        IEnumerable<UserStatistics> GetLeaderboard(int numUsers);
 
         /// <summary>
         /// The game modes.

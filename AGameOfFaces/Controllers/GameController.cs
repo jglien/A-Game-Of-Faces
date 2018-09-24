@@ -55,6 +55,21 @@ namespace AGameOfFaces.Controllers
         }
 
         /// <summary>
+        /// Gets the leaderboard.
+        /// </summary>
+        /// <param name="numUsers"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Defaults to 10 users.
+        /// </remarks>
+        [Route("leaderboard")]
+        [HttpGet]
+        public IHttpActionResult GetLeaderboard(int numUsers = 10)
+        {
+            return Ok(_gameService.GetLeaderboard(numUsers));
+        }
+
+        /// <summary>
         /// Submits a guess.
         /// </summary>
         /// <returns>Whether or not the guess was correct.</returns>

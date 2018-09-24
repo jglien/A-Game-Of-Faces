@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgameOfFaces.Core.DTO
+﻿namespace AGameOfFaces.Core.DTO
 {
     /// <summary>
     /// The user statistics DTO.

@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using AGameOfFaces.Core.DTO;
 using AgameOfFaces.Core.Enums;
 using AgameOfFaces.Core.Repositories.Interfaces;
 using AgameOfFaces.Core.Services.Interfaces;
-using AGameOfFaces.Core.DTO;
 
 namespace AgameOfFaces.Core.Services
 {
@@ -57,6 +57,14 @@ namespace AgameOfFaces.Core.Services
                 default:
                     return GetNormalGameData();
             }
+        }
+        
+        public IEnumerable<UserStatistics> GetLeaderboard(int numUsers)
+        {
+            var userStats = _gameRepository.GetStatistics().ToList();
+
+            userStats.Sort((x,y) => x.PercentCorrect.CompareTo(y.PercentCorrect));
+            return userStats.Take(numUsers);
         }
 
         #endregion

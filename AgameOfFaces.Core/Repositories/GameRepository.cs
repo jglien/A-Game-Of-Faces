@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using AGameOfFaces.Core.DTO;
+using AgameOfFaces.Core.Helpers;
 using AgameOfFaces.Core.Repositories.Interfaces;
 
 namespace AgameOfFaces.Core.Repositories
@@ -43,6 +46,18 @@ namespace AgameOfFaces.Core.Repositories
                 }
 
                 db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Gets the statistics.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<UserStatistics> GetStatistics()
+        {
+            using (var db = new DataEntities())
+            {
+                return db.Statistics.ToList().Select(s => s.ToUserStatistics());
             }
         }
     }
