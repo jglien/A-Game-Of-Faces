@@ -1,11 +1,9 @@
-﻿using System;
-using System.Web.Http;
-using AgameOfFaces.Core.Enums;
+﻿using System.Web.Http;
 using AgameOfFaces.Core.Repositories;
 using AgameOfFaces.Core.Repositories.Interfaces;
 using AgameOfFaces.Core.Services;
 using AgameOfFaces.Core.Services.Interfaces;
-using AGameOfFaces.Models;
+using AGameOfFaces.Core.DTO;
 
 namespace AGameOfFaces.Controllers
 {
@@ -40,14 +38,9 @@ namespace AGameOfFaces.Controllers
         [HttpGet]
         public IHttpActionResult Get(string mode = "")
         {
-            var requestedMode = Enum.TryParse<Mode>(mode, true, out var modeType);
-            var data = _gameService.GetGameData(modeType);
+            var game = _gameService.GetGameData(mode);
 
-            return Ok(new Game {
-                Faces = data.Faces,
-                Mode = requestedMode ? mode : nameof(Mode.Normal),
-                Names = data.Names
-            });
+            return Ok(game);
         }
 
         /// <summary>
@@ -69,7 +62,7 @@ namespace AGameOfFaces.Controllers
         [HttpPost]
         public IHttpActionResult Guess(Guess guess)
         {
-            var isCorrect = _gameService.CheckAnswer(guess.Name, guess.Face);
+            var isCorrect = _gameService.CheckAnswer(guess);
 
             return Ok(isCorrect);
         }

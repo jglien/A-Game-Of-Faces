@@ -53,10 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\GameData.cs" />
+    <Compile Include="DTO\Game.cs" />
+    <Compile Include="DTO\Guess.cs" />
     <Compile Include="DTO\Headshot.cs" />
     <Compile Include="DTO\Profile.cs" />
     <Compile Include="DTO\SocialLink.cs" />
+    <Compile Include="DTO\UserStatistics.cs" />
     <Compile Include="Enums\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GameRepository.cs" />

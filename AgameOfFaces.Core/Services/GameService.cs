@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using AgameOfFaces.Core.DTO;
 using AgameOfFaces.Core.Enums;
 using AgameOfFaces.Core.Repositories.Interfaces;
 using AgameOfFaces.Core.Services.Interfaces;
@@ -34,18 +33,20 @@ namespace AgameOfFaces.Core.Services
 
         #region Public Methods
 
-        public bool CheckAnswer(string name, string face)
+        public bool CheckAnswer(Guess guess)
         {
             var profiles = GetProfiles();
 
-            var correct = profiles.Any(p => name.Equals($"{p.FirstName} {p.LastName}") && face.Equals(p.Headshot.Url));
+            var correct = profiles.Any(p => guess.Name.Equals($"{p.FirstName} {p.LastName}") && guess.Face.Equals(p.Headshot.Url));
             _gameRepository.UpdateUserGuess(correct);
 
             return correct;
         }
 
-        public GameData GetGameData(Mode mode)
+        public Game GetGameData(string requestedMode)
         {
+            Enum.TryParse<Mode>(requestedMode, true, out var mode);
+
             switch(mode)
             {
                 case Mode.Matt:
@@ -73,44 +74,47 @@ namespace AgameOfFaces.Core.Services
 
         #region Private Methods
 
-        private GameData GetNormalGameData()
+        private Game GetNormalGameData()
         {
             const int numFaces = 6;
             var random = new Random();
             var profiles = GetRandomProfiles(numFaces, random, p => p);
 
             var profileForName = profiles.ElementAt(random.Next(profiles.Count));
-            return new GameData
+            return new Game
             {
                 Faces = profiles.Select(p => p.Headshot.Url),
+                Mode = nameof(Mode.Normal),
                 Names = new List<string> { $"{profileForName.FirstName} {profileForName.LastName}" }
             };
         }
 
-        private GameData GetReverseGameData()
+        private Game GetReverseGameData()
         {
             const int numNames = 6;
             var random = new Random();
             var profiles = GetRandomProfiles(numNames, random, p => p);
 
             var profileForFace = profiles.ElementAt(random.Next(profiles.Count));
-            return new GameData
+            return new Game
             {
                 Faces = new List<string> { profileForFace.Headshot.Url  },
+                Mode = nameof(Mode.Reverse),
                 Names = profiles.Select(p => $"{p.FirstName} {p.LastName}")
             };
         }
 
-        private GameData GetGameDataFilter(Func<IEnumerable<Profile>, IEnumerable<Profile>> filter)
+        private Game GetGameDataFilter(Func<IEnumerable<Profile>, IEnumerable<Profile>> filter)
         {
             const int numFaces = 6;
             var random = new Random();
             var profiles = GetRandomProfiles(numFaces, random, filter);
 
             var profileForName = profiles.ElementAt(random.Next(profiles.Count));
-            return new GameData
+            return new Game
             {
                 Faces = profiles.Select(p => p.Headshot.Url),
+                Mode = nameof(Mode.Matt),
                 Names = new List<string> { $"{profileForName.FirstName} {profileForName.LastName}" }
             };
         }

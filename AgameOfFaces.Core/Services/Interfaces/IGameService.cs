@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AgameOfFaces.Core.DTO;
-using AgameOfFaces.Core.Enums;
+﻿using System.Collections.Generic;
+using AGameOfFaces.Core.DTO;
 
 namespace AgameOfFaces.Core.Services.Interfaces
 {
@@ -18,7 +13,7 @@ namespace AgameOfFaces.Core.Services.Interfaces
         /// </summary>
         /// <param name="mode">The game mode.</param>
         /// <returns></returns>
-        GameData GetGameData(Mode mode);
+        Game GetGameData(string mode);
 
         /// <summary>
         /// Checks if the answer is correct by comparing the name to the face.
@@ -26,7 +21,7 @@ namespace AgameOfFaces.Core.Services.Interfaces
         /// <param name="name"></param>
         /// <param name="face"></param>
         /// <returns></returns>
-        bool CheckAnswer(string name, string face);
+        bool CheckAnswer(Guess guess);
 
         /// <summary>
         /// The game modes.

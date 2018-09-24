@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace AgameOfFaces.Core.DTO
+namespace AGameOfFaces.Core.DTO
 {
     /// <summary>
-    /// Data required to play a game.
+    /// Game model.
     /// </summary>
-    public class GameData
+    public class Game
     {
         /// <summary>
         /// The urls for images of faces.
         /// </summary>
         public IEnumerable<string> Faces { get; set; }
+
+        /// <summary>
+        /// The selected mode.
+        /// </summary>
+        public string Mode { get; set; }
 
         /// <summary>
         /// The names.
