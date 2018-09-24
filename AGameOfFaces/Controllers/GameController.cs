@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using AGameOfFaces.Core.DTO;
 using AGameOfFaces.Core.Repositories;
 using AGameOfFaces.Core.Repositories.Interfaces;
@@ -28,6 +29,15 @@ namespace AGameOfFaces.Controllers
         {
             _gameRepository = new GameRepository();
             _gameService = new GameService(_gameRepository);
+        }
+
+        /// <summary>
+        /// Constructor for testing.
+        /// </summary>
+        public GameController(IGameRepository gameRepository, IGameService gameService)
+        {
+            _gameRepository = gameRepository ?? throw new ArgumentNullException(nameof(gameRepository));
+            _gameService = gameService ?? throw new ArgumentNullException(nameof(gameService));
         }
 
         /// <summary>
