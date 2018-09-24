@@ -84,7 +84,7 @@ namespace AgameOfFaces.Core.Services
 
         private IEnumerable<Profile> GetProfiles()
         {
-            IEnumerable<Profile> profiles = new List<Profile>();
+            var profiles = Enumerable.Empty<Profile>();
 
             using (var client = new HttpClient())
             {
