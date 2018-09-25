@@ -1,7 +1,7 @@
 # A-Game-Of-Faces
 
 
-##To Creat DB
+## To Creat DB
 
 Create Data.mdf in App_Data, needs SQL Server specified in connection string in web.config: (LocalDB)\MSSQLLocalDB
 Run:
