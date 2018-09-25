@@ -73,7 +73,7 @@ namespace AGameOfFaces.Core.Services
 
         #region Public Properties
 
-        public IEnumerable<string> Modes { get; } = new ReadOnlyCollection<string>(new List<string>
+        public static IEnumerable<string> Modes { get; } = new ReadOnlyCollection<string>(new List<string>
         {
             nameof(Mode.Normal),
             nameof(Mode.Reverse),

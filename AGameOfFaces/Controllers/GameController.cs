@@ -61,7 +61,7 @@ namespace AGameOfFaces.Controllers
         [HttpGet]
         public IHttpActionResult Modes()
         {
-            return Ok(_gameService.Modes);
+            return Ok(GameService.Modes);
         }
 
         /// <summary>

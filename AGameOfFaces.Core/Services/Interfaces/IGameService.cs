@@ -29,10 +29,5 @@ namespace AGameOfFaces.Core.Services.Interfaces
         /// <param name="numUsers"></param>
         /// <returns></returns>
         IEnumerable<UserStatistics> GetLeaderboard(int numUsers);
-
-        /// <summary>
-        /// The game modes.
-        /// </summary>
-        IEnumerable<string> Modes { get; }
     }
 }

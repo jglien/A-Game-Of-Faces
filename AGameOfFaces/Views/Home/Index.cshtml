@@ -1,7 +1,69 @@
 ﻿<div class="jumbotron">
-    <h1>A Game of Faces</h1>
-    <p class="lead">
-        <h2>A project by John Lien</h2>
-    <p><a class="btn btn-default" href="https://github.com/john-lien/A-Game-Of-Faces">Visit the repo! &raquo;</a></p>
-    </p>
+    <h2>A Game of Faces</h2>
+    <p>Select a mode and click start game, refresh page before switching modes.</p>
+    <p>To guess, either click the name or the face, depending on the mode being played.</p>
+    <div>
+        <select id="modeSelect">
+            @foreach (var mode in ViewBag.Modes)
+            {
+                <option value="@mode">@mode</option>
+            }
+        </select>
+        <button id="start" onclick="start()">Start Game</button>
+    </div>
+    <div>
+        <label id="name0" onclick="onNameClick(0)"></label>
+        <label id="name1" onclick="onNameClick(1)"></label>
+        <label id="name2" onclick="onNameClick(2)"></label>
+        <label id="name3" onclick="onNameClick(3)"></label>
+        <label id="name4" onclick="onNameClick(4)"></label>
+        <label id="name5" onclick="onNameClick(5)"></label>
+    </div>
+    <div>
+        <img id="face0" src="" onclick="onFaceClick(0)" />
+        <img id="face1" src="" onclick="onFaceClick(1)" />
+        <img id="face2" src="" onclick="onFaceClick(2)" />
+        <img id="face3" src="" onclick="onFaceClick(3)" />
+        <img id="face4" src="" onclick="onFaceClick(4)" />
+        <img id="face5" src="" onclick="onFaceClick(5)" />
+    </div>
 </div>
+<footer>
+    <p><a class="btn btn-default" href="https://github.com/john-lien/A-Game-Of-Faces">Visit the repo! &raquo;</a></p>
+</footer>
+<script>
+    function start() {
+        var mode = $("#modeSelect").val();
+        $.get("/api/game?mode=" + mode, function (data, status) {
+            if (status === "success") {
+                $.each(data.Faces, function (i, face) {
+                    var imgElement = "#face" + i;
+                    $(imgElement).attr("src", face);
+                });
+                $.each(data.Names, function (i, name) {
+                    var label = "#name" + i;
+                    $(label).val(name);
+                    $(label).text(name);
+                });
+            }
+        });
+    }
+    function onFaceClick(f) {
+        var name = $("#name0").val();
+        var face = $("#face" + f).attr("src");
+        $.post("/api/game/guess", { face: face, name: name },
+            function (data) {
+                if (data) alert("Correct!");
+                else alert("Incorrect, try again.");
+            });
+    }
+    function onNameClick(n) {
+        var face = $("#face0").attr("src");
+        var name = $("#name" + n).val();
+        $.post("/api/game/guess", { face: face, name: name },
+            function (data) {
+                if (data) alert("Correct!");
+                else alert("Incorrect, try again.");
+            });
+    }
+</script>
