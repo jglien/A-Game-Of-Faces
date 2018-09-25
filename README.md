@@ -5,6 +5,7 @@
 
 Create Data.mdf in App_Data, needs SQL Server specified in connection string in web.config: (LocalDB)\MSSQLLocalDB
 Run:
+```SQL
 CREATE TABLE [dbo].[Statistics] (
     [Id]              INT IDENTITY(1,1) NOT NULL,
     [User]            NVARCHAR (50)     NOT NULL,
@@ -12,3 +13,4 @@ CREATE TABLE [dbo].[Statistics] (
     [Correct_Guesses] INT               NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+```
