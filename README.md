@@ -23,8 +23,3 @@ CREATE TABLE [dbo].[Statistics] (
 ### Use IIS
 
 You can simply use IIS Express and browse to the start page defined in project properties > Web to use the client, or use Postman etc. Turn Windows Authentication on in IIS.
-
-## Improvements
-
-1. Error handling: the API could use more robust error handling.
-2. Authentication: rather than use Windows domain accounts, implement HTTP Message Handler for authentication.
