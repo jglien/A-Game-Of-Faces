@@ -1,10 +1,15 @@
-# A-Game-Of-Faces
+# A Game of Faces
 
+A RESTful Web API for implementing a game to familiarize yourself with colleagues at WillowTree. Includes a simple MVC client.
 
-## To Creat DB
+## How to Run
 
-Create Data.mdf in App_Data, needs SQL Server specified in connection string in web.config: (LocalDB)\MSSQLLocalDB
-Run:
+### To Creat DB
+
+Use Tools > Connect to Database to create Data.mdf in App_Data. Make sure SQL Server specified in connection string in web.config ((LocalDB)\MSSQLLocalDB) is correct.
+
+Then run the following script in the context of the database.
+
 ```SQL
 CREATE TABLE [dbo].[Statistics] (
     [Id]              INT IDENTITY(1,1) NOT NULL,
@@ -14,3 +19,12 @@ CREATE TABLE [dbo].[Statistics] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 ```
+
+### Use IIS
+
+You can simply use IIS Express and browse to the start page defined in project properties > Web to use the client, or use Postman etc. Turn Windows Authentication on in IIS.
+
+## Improvements
+
+1. Error handling: the API could use more robust error handling.
+2. Authentication: rather than use Windows domain accounts, implement HTTP Message Handler for authentication.
