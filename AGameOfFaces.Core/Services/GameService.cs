@@ -92,6 +92,16 @@ namespace AGameOfFaces.Core.Services
             var random = new Random();
             var profiles = GetRandomProfiles(numFaces, random, p => p);
 
+            if (!profiles.Any())
+            {
+                return new Game
+                {
+                    Faces = new List<string>(),
+                    Mode = nameof(Mode.Normal),
+                    Names = new List<string>()
+                };
+            }
+
             var profileForName = profiles.ElementAt(random.Next(profiles.Count));
             return new Game
             {
@@ -106,6 +116,16 @@ namespace AGameOfFaces.Core.Services
             const int numNames = 6;
             var random = new Random();
             var profiles = GetRandomProfiles(numNames, random, p => p);
+
+            if (!profiles.Any())
+            {
+                return new Game
+                {
+                    Faces = new List<string>(),
+                    Mode = nameof(Mode.Reverse),
+                    Names = new List<string>()
+                };
+            }
 
             var profileForFace = profiles.ElementAt(random.Next(profiles.Count));
             return new Game
@@ -122,6 +142,16 @@ namespace AGameOfFaces.Core.Services
             var random = new Random();
             var profiles = GetRandomProfiles(numFaces, random, filter);
 
+            if (!profiles.Any())
+            {
+                return new Game
+                {
+                    Faces = new List<string>(),
+                    Mode = mode,
+                    Names = new List<string>()
+                };
+            }
+
             var profileForName = profiles.ElementAt(random.Next(profiles.Count));
             return new Game
             {
@@ -134,8 +164,13 @@ namespace AGameOfFaces.Core.Services
         private IList<Profile> GetRandomProfiles(int numProfiles, Random random, Func<IEnumerable<Profile>, IEnumerable<Profile>> filter)
         {
             var profiles = filter(GetProfiles()).ToList();
-
             var selectedProfiles = new List<Profile>();
+
+            if (!profiles.Any())
+            {
+                return selectedProfiles;
+            }
+
             for (var i = 0; i < numProfiles; i++)
             {
                 var profile = profiles.ElementAt(random.Next(profiles.Count));
