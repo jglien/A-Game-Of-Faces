@@ -20,6 +20,10 @@ CREATE TABLE [dbo].[Statistics] (
 );
 ```
 
+### Specify a Profile Source in Web.config Application Settings
+
+Add a profile source to web config. It must be a valid URI.
+
 ### Use IIS
 
 You can simply use IIS Express and browse to the start page defined in project properties > Web to use the client, or use Postman etc. Turn Windows Authentication on in IIS.
