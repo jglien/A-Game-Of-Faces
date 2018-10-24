@@ -1,6 +1,6 @@
 # A Game of Faces
 
-A RESTful Web API for implementing a game to familiarize yourself with colleagues at WillowTree. Includes a simple MVC client.
+A RESTful Web API for implementing a game of matching names and faces. Includes a simple MVC client.
 
 ## How to Run
 

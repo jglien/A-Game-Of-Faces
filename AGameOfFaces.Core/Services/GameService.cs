@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -149,12 +150,17 @@ namespace AGameOfFaces.Core.Services
 
         private IEnumerable<Profile> GetProfiles()
         {
-            using (var client = new HttpClient())
+            var address = ConfigurationManager.AppSettings["ProfileSource"];
+
+            if (!string.IsNullOrEmpty(address))
             {
-                var response = client.GetAsync(@"https://www.willowtreeapps.com/api/v1.0/profiles").Result;
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    return response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
+                    var response = client.GetAsync(address).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
+                    }
                 }
             }
 
