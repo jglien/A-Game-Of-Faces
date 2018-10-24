@@ -1,7 +1,6 @@
 # Things of note
 
 1. Since this is a RESTful API, it is stateless so each endpoint is designed with that in mind. For example, we track user guesses since we can examine user context but we cannot time responses on the server since that would violate statelessness.
-2. I used dependency injection since it is a tried-and-true pattern that works well for this kind of application.
-3. I used DTOs instead of MVC Models.
-4. I used Moq for testing since I wanted to test logic without read/writes to a DB.
-5. HTTP Message Handlers can be used to implement custom authentication but this uses integrated Windows security for now.
+2. I used DTOs instead of MVC Models.
+3. I used Moq for testing since I wanted to test logic without read/writes to a DB.
+4. HTTP Message Handlers can be used to implement custom authentication but this uses integrated Windows security for now.
