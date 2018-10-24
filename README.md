@@ -20,9 +20,9 @@ CREATE TABLE [dbo].[Statistics] (
 );
 ```
 
-### Specify a Profile Source in Web.config Application Settings
+### Specify a Profile Source in Application Settings
 
-Add a profile source to web config. It must be a valid URI.
+Add a profile source to web config and the test project's App.config. It must be a valid URI.
 
 ### Use IIS
 
