@@ -27,7 +27,7 @@ namespace AGameOfFaces.Tests.Controllers
         {
             _gameRepository = new Mock<IGameRepository>();
             _gameService = new GameService(_gameRepository.Object);
-            _gameController = new GameController(_gameRepository.Object, _gameService);
+            _gameController = new GameController(_gameService);
         }
 
         [TestMethod]
